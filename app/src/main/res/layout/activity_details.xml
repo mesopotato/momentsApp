@@ -32,6 +32,7 @@
                 android:layout_marginRight="16dp"
                 android:layout_marginBottom="8dp"
                 android:contentDescription="moment"
+                android:onClick="dispatchTakePictureIntent"
                 app:layout_constraintBottom_toTopOf="@+id/TextTitle"
                 app:layout_constraintDimensionRatio="1:1"
                 app:layout_constraintEnd_toEndOf="parent"
