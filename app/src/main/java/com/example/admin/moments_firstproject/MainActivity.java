@@ -5,6 +5,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import com.example.admin.moments_firstproject.db.AppDatabase;
+import com.example.admin.moments_firstproject.db.DbSingelton;
+import com.example.admin.moments_firstproject.db.Eintrag;
+import java.util.List;
+import static android.provider.AlarmClock.EXTRA_MESSAGE;
 
 public class MainActivity extends AppCompatActivity {
     public static final String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
@@ -13,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        DbSingelton.getInstance(getApplicationContext());
     }
     /** Called when the user taps the Send button */
     public void sendMessage(View view) {
