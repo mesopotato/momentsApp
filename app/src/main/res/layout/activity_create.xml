@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DetailsActivity">
+    tools:context=".CreateActivity">
 
     <ScrollView
         android:id="@+id/scrollView2"
@@ -39,8 +39,8 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="?attr/colorButtonNormal" />
 
-            <TextView
-                android:id="@+id/TextTitle"
+            <EditText
+                android:id="@+id/InputTitle"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="16dp"
@@ -50,14 +50,15 @@
                 android:layout_marginRight="16dp"
                 android:layout_marginBottom="16dp"
                 android:ems="10"
+                android:hint="Title"
+                android:inputType="textPersonName"
                 app:layout_constraintBottom_toTopOf="@+id/TextDetails"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageButton" />
 
-
-            <TextView
-                android:id="@+id/TextDetails"
+            <EditText
+                android:id="@+id/InputDetails"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="16dp"
@@ -68,11 +69,29 @@
                 android:layout_marginBottom="32dp"
                 android:layout_weight="7"
                 android:ems="10"
+                android:hint="What is love?"
+                android:inputType="textMultiLine"
                 android:singleLine="false"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/TextTitle" />
+                app:layout_constraintTop_toBottomOf="@+id/InputTitle" />
+
+            <TextView
+                android:id="@+id/location"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="32dp"
+                android:layout_weight="7"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/InputDetails" />
 
             <android.support.design.widget.BottomNavigationView
                 android:layout_width="match_parent"
@@ -83,14 +102,23 @@
                 tools:layout_editor_absoluteY="513dp">
 
                 <android.support.design.widget.FloatingActionButton
-                    android:id="@+id/btnCreate"
+                    android:id="@+id/btnSave"
+                    android:onClick="savePost"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:onClick="newPost"
                     android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="120dp"
                     app:backgroundTint="@color/colorPrimaryDark"
                     app:srcCompat="@color/colorPrimaryDark" />
 
+                <android.support.design.widget.FloatingActionButton
+                    android:id="@+id/btnCancel"
+                    android:onClick="cancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginRight="120dp"
+                    app:srcCompat="@color/colorAccent" />
             </android.support.design.widget.BottomNavigationView>
 
         </LinearLayout>
