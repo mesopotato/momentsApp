@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.example.admin.moments_firstproject.db.AppDatabase;
+import com.example.admin.moments_firstproject.db.DbSingelton;
 import com.example.admin.moments_firstproject.db.Eintrag;
 
 import java.util.List;
@@ -21,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        DbSingelton.getInstance(getApplicationContext());
     }
     /** Called when the user taps the Send button */
     public void sendMessage(View view) {
