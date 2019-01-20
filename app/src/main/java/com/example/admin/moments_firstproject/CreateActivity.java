@@ -259,8 +259,10 @@ public class CreateActivity extends AppCompatActivity implements GoogleApiClient
         String detail = inputDetails.getText().toString();
         intent.putExtra(EXTRA_DETAIL, detail);
 
-        intent.putExtra(EXTRA_LAT, lat);
-        intent.putExtra(EXTRA_LONG, lng);
+        String latS = Double.toString(lat);
+        String lngS = Double.toString(lng);
+        intent.putExtra(EXTRA_LAT, latS);
+        intent.putExtra(EXTRA_LONG, lngS);
 
         ImageButton imageButton = (ImageButton) findViewById(R.id.imageButton);
 
