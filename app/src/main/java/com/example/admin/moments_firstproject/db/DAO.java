@@ -23,10 +23,10 @@ public interface DAO {
     //User findByName(String first, String last);
 
     @Insert
-    void insertAll(Eintrag... eingabe);
+    void insertAll(Eintrag... eintrag);
 
     @Delete
-    void delete(Eintrag eingabe);
+    void delete(Eintrag eintrag);
 
     @Query("Delete from eintrag")
     void drop();

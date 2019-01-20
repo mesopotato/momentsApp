@@ -23,23 +23,19 @@ public class DisplayMessageActivity extends AppCompatActivity implements ItemFra
 
         String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
 
-        Eintrag eintrag = new Eintrag();
-        eintrag.setFirstName(message);
         AppDatabase db = DbSingelton.getInstance(null);
 
         //new Thread(() -> {
         //input einspeichern
-        db.dao().insertAll(eintrag);
+       // db.dao().insertAll(eintrag);
         //abfrage
         List<Eintrag> eintraege = db.dao().getAll();
 
         int i = eintraege.size() -1 ;
-
         setContentView(R.layout.activity_display_message);
         // Get the Intent that started this activity and extract the string
         TextView textView = findViewById(R.id.textView2);
-        textView.setText(eintraege.get(i).getFirstName());
-
+        textView.setText(eintraege.get(i).getTitel());
 
          //.allowMainThreadQueries()
 /*
@@ -53,8 +49,6 @@ public class DisplayMessageActivity extends AppCompatActivity implements ItemFra
         int i = eintraege.size() -1;
         textView.setText(eintraege.get(i).getFirstName());
 */
-
-
 
 
     //    }).start();

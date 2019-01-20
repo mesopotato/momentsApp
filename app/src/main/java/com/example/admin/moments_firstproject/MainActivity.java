@@ -23,11 +23,14 @@ public class MainActivity extends AppCompatActivity {
     /** Called when the user taps the Send button */
     public void sendMessage(View view) {
 
-        // Do something in response to button
+        // Do something in response to button nämlich zur dysplay seite gehen aber nicht bevor startActivity(intent)
         Intent intent = new Intent(this, DisplayMessageActivity.class);
+
+        //** hier wird der text der eingegeben uwrde abgeholt
         EditText editText = (EditText) findViewById(R.id.editText);
         String message = editText.getText().toString();
         intent.putExtra(EXTRA_MESSAGE, message);
+
         startActivity(intent);
     }
     public void newPost(View view) {

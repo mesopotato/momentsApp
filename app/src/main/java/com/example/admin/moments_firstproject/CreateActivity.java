@@ -13,6 +13,8 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,10 +25,19 @@ import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class CreateActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener, LocationListener {
+
+    public static final String EXTRA_TITLE = "com.example.admin.moments_firstproject.TITLE";
+    public static final String EXTRA_DETAIL = "com.example.admin.moments_firstproject.DETAIL";
+    public static final String EXTRA_LONG = "com.example.admin.moments_firstproject.LONG";
+    public static final String EXTRA_LAT = "com.example.admin.moments_firstproject.LAT";
+    public static final String EXTRA_IMGPATH = "com.example.admin.moments_firstproject.IMGPATH";
+    public static final String EXTRA_DATE = "com.example.admin.moments_firstproject.DATE";
 
     private Location location;
     private TextView locationTv;
@@ -40,6 +51,8 @@ public class CreateActivity extends AppCompatActivity implements GoogleApiClient
     private ArrayList<String> permissions = new ArrayList<>();
     // integer for permissions results request
     private static final int ALL_PERMISSIONS_RESULT = 1011;
+    double lng;
+    double lat;
 
 
     @Override
@@ -147,6 +160,9 @@ public class CreateActivity extends AppCompatActivity implements GoogleApiClient
 
         if (location != null) {
             locationTv.setText("Latitude : " + location.getLatitude() + "\nLongitude : " + location.getLongitude());
+             lat = location.getLatitude();
+             lng = location.getLongitude();
+
         }
 
         startLocationUpdates();
@@ -180,6 +196,8 @@ public class CreateActivity extends AppCompatActivity implements GoogleApiClient
     public void onLocationChanged(Location location) {
         if (location != null) {
             locationTv.setText("Latitude : " + location.getLatitude() + "\nLongitude : " + location.getLongitude());
+            lat = location.getLatitude();
+            lng = location.getLongitude();
         }
     }
 
@@ -232,6 +250,26 @@ public class CreateActivity extends AppCompatActivity implements GoogleApiClient
         Intent intent = new Intent(this, DetailsActivity.class);
 
         // Insert the db save methods etc here
+        //** hier wird der text der eingegeben uwrde abgeholt
+        EditText inputTitle = (EditText) findViewById(R.id.InputTitle);
+        String title = inputTitle.getText().toString();
+        intent.putExtra(EXTRA_TITLE, title);
+
+        EditText inputDetails = (EditText) findViewById(R.id.InputDetails);
+        String detail = inputDetails.getText().toString();
+        intent.putExtra(EXTRA_DETAIL, detail);
+
+        intent.putExtra(EXTRA_LAT, lat);
+        intent.putExtra(EXTRA_LONG, lng);
+
+        ImageButton imageButton = (ImageButton) findViewById(R.id.imageButton);
+
+        //String path = imageButton
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss");
+        String currentDateandTime = sdf.format(new Date());
+
+        intent.putExtra(EXTRA_DATE, currentDateandTime);
 
         startActivity(intent);
     }

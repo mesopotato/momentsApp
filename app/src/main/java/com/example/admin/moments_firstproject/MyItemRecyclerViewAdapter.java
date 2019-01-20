@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.admin.moments_firstproject.ItemFragment.OnListFragmentInteractionListener;
@@ -33,8 +34,9 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
-        holder.mIdView.setText("" + mValues.get(position).getUid());
-        holder.mContentView.setText(mValues.get(position).getFirstName());
+        holder.mIdView.setText("" + mValues.get(position).getTitel());
+        holder.mContentView.setText(mValues.get(position).getDetail());
+        holder.mImageView.setImageResource(android.R.drawable.alert_dark_frame);//hier kommt die resource number des bildes rein
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,6 +59,7 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
         public final View mView;
         public final TextView mIdView;
         public final TextView mContentView;
+        public final ImageView mImageView;
         public Eintrag mItem;
 
         public ViewHolder(View view) {
@@ -64,6 +67,7 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
             mView = view;
             mIdView = (TextView) view.findViewById(R.id.item_number);
             mContentView = (TextView) view.findViewById(R.id.content);
+            mImageView = (ImageView) view.findViewById(R.id.thumbnail);
         }
 
         @Override
