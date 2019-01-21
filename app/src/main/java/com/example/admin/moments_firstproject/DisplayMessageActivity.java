@@ -30,9 +30,10 @@ public class DisplayMessageActivity extends AppCompatActivity implements ItemFra
        // db.dao().insertAll(eintrag);
         //abfrage
         List<Eintrag> eintraege = db.dao().getAll();
+        setContentView(R.layout.activity_display_message);
         if (eintraege.size() > 0){
             int i = eintraege.size() -1 ;
-            setContentView(R.layout.activity_display_message);
+
         // Get the Intent that started this activity and extract the string
             TextView textView = findViewById(R.id.textView2);
             textView.setText(eintraege.get(i).getTitel());
@@ -40,7 +41,7 @@ public class DisplayMessageActivity extends AppCompatActivity implements ItemFra
         else {
             TextView textView = findViewById(R.id.textView2);
             textView.setText("Noch keine Einträge vorhanden");}
-        
+
 
          //.allowMainThreadQueries()
 /*
