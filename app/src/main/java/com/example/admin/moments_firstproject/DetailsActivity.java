@@ -60,16 +60,29 @@ public class DetailsActivity extends AppCompatActivity {
 
         ImageButton img = findViewById(R.id.imageButton);
 
-        Matrix matrix = new Matrix();
+        Bitmap temp = readImageFile();
+        if (temp.getWidth() >= temp.getHeight()){
 
-        matrix.postRotate(90);
+            bitmap = Bitmap.createBitmap(
+                    temp,
+                    temp.getWidth()/2 - temp.getHeight()/2,
+                    0,
+                    temp.getHeight(),
+                    temp.getHeight()
+            );
 
-        //Bitmap zwischenLagerung = Bitmap.createScaledBitmap(readImageFile(), mImageButton.getWidth(), mImageButton.getHeight(), true);
+        }else{
 
-        //Bitmap rotatedBitmap = Bitmap.createBitmap(zwischenLagerung, 0, 0, zwischenLagerung.getWidth(), zwischenLagerung.getHeight(), matrix, true);
-        img.setImageBitmap(readImageFile());
-
-        //img.setBackgroundResource(android.R.drawable.dialog_holo_dark_frame);
+            bitmap = Bitmap.createBitmap(
+                    temp,
+                    0,
+                    temp.getHeight()/2 - temp.getWidth()/2,
+                    temp.getWidth(),
+                    temp.getWidth()
+            );
+        }
+        Bitmap zwischenLagerung = Bitmap.createScaledBitmap(bitmap, img.getWidth(), img.getHeight(), true); //skalieren um aufs Bild zu pasen
+        img.setImageBitmap(zwischenLagerung);
 
 
     }
