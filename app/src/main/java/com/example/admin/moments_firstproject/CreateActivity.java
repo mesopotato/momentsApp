@@ -316,16 +316,32 @@ public class CreateActivity extends AppCompatActivity implements GoogleApiClient
         }
     }
 
+    //methode wird ausgeführt nach camera activity result
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            Matrix matrix = new Matrix();
+            Bitmap temp = readImageFile();
+            if (temp.getWidth() >= temp.getHeight()){
 
-            matrix.postRotate(90);
+                bitmap = Bitmap.createBitmap(
+                        temp,
+                        temp.getWidth()/2 - temp.getHeight()/2,
+                        0,
+                        temp.getHeight(),
+                        temp.getHeight()
+                );
 
-            Bitmap zwischenLagerung = Bitmap.createScaledBitmap(readImageFile(), mImageButton.getWidth(), mImageButton.getHeight(), true);
+            }else{
 
-            //Bitmap rotatedBitmap = Bitmap.createBitmap(zwischenLagerung, 0, 0, zwischenLagerung.getWidth(), zwischenLagerung.getHeight(), matrix, true);
+                bitmap = Bitmap.createBitmap(
+                        temp,
+                        0,
+                        temp.getHeight()/2 - temp.getWidth()/2,
+                        temp.getWidth(),
+                        temp.getWidth()
+                );
+            }
+            Bitmap zwischenLagerung = Bitmap.createScaledBitmap(bitmap, mImageButton.getWidth(), mImageButton.getHeight(), true); //skalieren um aufs Bild zu pasen
             mImageButton.setImageBitmap(zwischenLagerung);
         }
     }
@@ -368,5 +384,6 @@ public class CreateActivity extends AppCompatActivity implements GoogleApiClient
         mCurrentPhotoPath = image.getAbsolutePath();
         return image;
     }
+
 
 }
