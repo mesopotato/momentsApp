@@ -268,7 +268,7 @@ public class CreateActivity extends AppCompatActivity implements GoogleApiClient
 
         //String path = imageButton
 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss");
+        SimpleDateFormat sdf = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss");
         String currentDateandTime = sdf.format(new Date());
 
         intent.putExtra(EXTRA_DATE, currentDateandTime);
