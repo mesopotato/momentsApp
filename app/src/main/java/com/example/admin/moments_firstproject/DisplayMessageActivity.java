@@ -2,9 +2,13 @@ package com.example.admin.moments_firstproject;
 
 import android.arch.persistence.room.Room;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
 import com.example.admin.moments_firstproject.db.AppDatabase;
@@ -12,6 +16,11 @@ import com.example.admin.moments_firstproject.db.DbSingelton;
 import com.example.admin.moments_firstproject.db.Eintrag;
 import com.example.admin.moments_firstproject.dummy.DummyContent;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 public class DisplayMessageActivity extends AppCompatActivity implements ItemFragment.OnListFragmentInteractionListener {
@@ -36,7 +45,7 @@ public class DisplayMessageActivity extends AppCompatActivity implements ItemFra
 
         // Get the Intent that started this activity and extract the string
             TextView textView = findViewById(R.id.textView2);
-            textView.setText(eintraege.get(i).getTitel());
+            textView.setText("MyMoments");
         }
         else {
             TextView textView = findViewById(R.id.textView2);
@@ -78,4 +87,11 @@ public class DisplayMessageActivity extends AppCompatActivity implements ItemFra
     public void onListFragmentInteraction(Eintrag item) {
 
     }
+    public void newPost(View view) {
+
+        // Do something in response to button
+        Intent intent = new Intent(this, CreateActivity.class);
+        startActivity(intent);
+    }
+
 }

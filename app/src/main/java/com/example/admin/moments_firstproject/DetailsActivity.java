@@ -40,6 +40,7 @@ public class DetailsActivity extends AppCompatActivity {
         path = intent.getStringExtra(CreateActivity.EXTRA_IMGPATH);
 
         Eintrag eintrag = new Eintrag(title, detail, path, lng, lat, date);
+
         AppDatabase db = DbSingelton.getInstance(null);
         db.dao().insertAll(eintrag);
 
@@ -61,11 +62,9 @@ public class DetailsActivity extends AppCompatActivity {
         ImageButton img = findViewById(R.id.imageButton);
 
         Matrix matrix = new Matrix();
-
         matrix.postRotate(90);
 
-        //Bitmap zwischenLagerung = Bitmap.createScaledBitmap(readImageFile(), mImageButton.getWidth(), mImageButton.getHeight(), true);
-
+        //Bitmap zwischenLagerung = Bitmap.createScaledBitmap(readImageFile(), img.getWidth(), img.getHeight(), true);
         //Bitmap rotatedBitmap = Bitmap.createBitmap(zwischenLagerung, 0, 0, zwischenLagerung.getWidth(), zwischenLagerung.getHeight(), matrix, true);
         img.setImageBitmap(readImageFile());
 

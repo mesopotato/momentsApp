@@ -27,9 +27,6 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, DisplayMessageActivity.class);
 
         //** hier wird der text der eingegeben uwrde abgeholt
-        EditText editText = (EditText) findViewById(R.id.editText);
-        String message = editText.getText().toString();
-        intent.putExtra(EXTRA_MESSAGE, message);
 
         startActivity(intent);
     }
