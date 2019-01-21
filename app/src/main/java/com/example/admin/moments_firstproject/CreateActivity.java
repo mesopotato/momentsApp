@@ -283,6 +283,7 @@ public class CreateActivity extends AppCompatActivity implements GoogleApiClient
         intent.putExtra(EXTRA_LAT, latS);
         intent.putExtra(EXTRA_LONG, lngS);
 
+        intent.putExtra(EXTRA_IMGPATH, mCurrentPhotoPath);
 
         //String path = imageButton
 
