@@ -295,12 +295,14 @@ public class CreateActivity extends AppCompatActivity implements GoogleApiClient
         startActivity(intent);
     }
 
+    //öffnet das kamera app
     public void dispatchTakePictureIntent(View view) {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         // Ensure that there's a camera activity to handle the intent
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
             File photoFile = null;
             try {
+                //leeres image file erstellen
                 photoFile = createImageFile();
             } catch (IOException ex) {
                 Log.e("createImageFile", "ceate image failed");
@@ -311,16 +313,21 @@ public class CreateActivity extends AppCompatActivity implements GoogleApiClient
                         "com.example.admin.moments_firstproject.fileprovider",
                         photoFile);
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+                //erst jetzt wird die Kamera App gestartet
                 startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
             }
         }
     }
 
     //methode wird ausgeführt nach camera activity result
+    // wird das bitmap erstellt
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            //holt nun das bild aus dem verzeichnis ruas und erstellt ein bitmap daraus
             Bitmap temp = readImageFile();
+
+            //skalieren um aufs Bild zu pasen
             if (temp.getWidth() >= temp.getHeight()){
 
                 bitmap = Bitmap.createBitmap(
@@ -341,11 +348,12 @@ public class CreateActivity extends AppCompatActivity implements GoogleApiClient
                         temp.getWidth()
                 );
             }
-            Bitmap zwischenLagerung = Bitmap.createScaledBitmap(bitmap, mImageButton.getWidth(), mImageButton.getHeight(), true); //skalieren um aufs Bild zu pasen
+            Bitmap zwischenLagerung = Bitmap.createScaledBitmap(bitmap, mImageButton.getWidth(), mImageButton.getHeight(), true);
             mImageButton.setImageBitmap(zwischenLagerung);
         }
     }
 
+    //hier wird das image file geholt und in ein bitMap format zurückgegeben
     private Bitmap readImageFile() {
         File file = new File(mCurrentPhotoPath);
         InputStream is = null;
@@ -368,15 +376,16 @@ public class CreateActivity extends AppCompatActivity implements GoogleApiClient
         }
     }
 
-
+    //hier wird das leere image file erstellt
     private File createImageFile() throws IOException {
         // Create an image file name
-        String timeStamp = new android.icu.text.SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String timeStamp = new android.icu.text.SimpleDateFormat
+                           ("yyyyMMdd_HHmmss").format(new Date());
         String imageFileName = "JPEG_" + timeStamp + "_";
         File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
         File image = File.createTempFile(
                 imageFileName,  /* prefix */
-                ".jpg",         /* suffix */
+                ".jpg",   /* suffix */
                 storageDir      /* directory */
         );
 
@@ -384,6 +393,4 @@ public class CreateActivity extends AppCompatActivity implements GoogleApiClient
         mCurrentPhotoPath = image.getAbsolutePath();
         return image;
     }
-
-
 }
