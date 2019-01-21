@@ -40,7 +40,7 @@ public class DisplayMessageActivity extends AppCompatActivity implements ItemFra
         else {
             TextView textView = findViewById(R.id.textView2);
             textView.setText("Noch keine Einträge vorhanden");}
-        }
+        
 
          //.allowMainThreadQueries()
 /*
