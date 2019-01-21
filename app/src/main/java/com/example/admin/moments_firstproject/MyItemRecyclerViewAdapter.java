@@ -1,6 +1,10 @@
 package com.example.admin.moments_firstproject;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +15,11 @@ import com.example.admin.moments_firstproject.ItemFragment.OnListFragmentInterac
 import com.example.admin.moments_firstproject.db.Eintrag;
 import com.example.admin.moments_firstproject.dummy.DummyContent.DummyItem;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 
@@ -18,6 +27,8 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
 
     private final List<Eintrag> mValues;
     private final OnListFragmentInteractionListener mListener;
+    String path;
+    Bitmap bitmap;
 
     public MyItemRecyclerViewAdapter(List<Eintrag> items, OnListFragmentInteractionListener listener) {
         mValues = items;
@@ -36,7 +47,14 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
         holder.mItem = mValues.get(position);
         holder.mIdView.setText("" + mValues.get(position).getTitel());
         holder.mContentView.setText(mValues.get(position).getDetail());
-        holder.mImageView.setImageResource(android.R.drawable.alert_dark_frame);//hier kommt die resource number des bildes rein
+
+
+        path = mValues.get(position).getImgPath();
+        Matrix matrix = new Matrix();
+        matrix.postRotate(90);
+       // mImageView.setImageBitmap(readImageFile());
+       // holder.mImageView.setImageResource(android.R.drawable.alert_dark_frame);//hier kommt die resource number des bildes rein
+        holder.mImageView.setImageBitmap(readImageFile());//hier kommt die resource number des bildes rein
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,6 +91,28 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
         @Override
         public String toString() {
             return super.toString() + " '" + mContentView.getText() + "'";
+        }
+    }
+
+    private Bitmap readImageFile() {
+        File file = new File(path);
+        InputStream is = null;
+        try {
+            is = new FileInputStream(file);
+            bitmap = BitmapFactory.decodeStream(is);
+            return bitmap;
+        } catch (FileNotFoundException e) {
+            Log.e("DECODER", "Could not find image file", e);
+            return null;
+        } finally {
+            if(is != null) {
+                try {
+                    is.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            }
         }
     }
 }

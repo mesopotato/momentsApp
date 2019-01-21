@@ -40,6 +40,7 @@ public class DetailsActivity extends AppCompatActivity {
         path = intent.getStringExtra(CreateActivity.EXTRA_IMGPATH);
 
         Eintrag eintrag = new Eintrag(title, detail, path, lng, lat, date);
+
         AppDatabase db = DbSingelton.getInstance(null);
         db.dao().insertAll(eintrag);
 
@@ -60,29 +61,14 @@ public class DetailsActivity extends AppCompatActivity {
 
         ImageButton img = findViewById(R.id.imageButton);
 
-        Bitmap temp = readImageFile();
-        if (temp.getWidth() >= temp.getHeight()){
+        Matrix matrix = new Matrix();
+        matrix.postRotate(90);
 
-            bitmap = Bitmap.createBitmap(
-                    temp,
-                    temp.getWidth()/2 - temp.getHeight()/2,
-                    0,
-                    temp.getHeight(),
-                    temp.getHeight()
-            );
+        //Bitmap zwischenLagerung = Bitmap.createScaledBitmap(readImageFile(), img.getWidth(), img.getHeight(), true);
+        //Bitmap rotatedBitmap = Bitmap.createBitmap(zwischenLagerung, 0, 0, zwischenLagerung.getWidth(), zwischenLagerung.getHeight(), matrix, true);
+        img.setImageBitmap(readImageFile());
 
-        }else{
-
-            bitmap = Bitmap.createBitmap(
-                    temp,
-                    0,
-                    temp.getHeight()/2 - temp.getWidth()/2,
-                    temp.getWidth(),
-                    temp.getWidth()
-            );
-        }
-        Bitmap zwischenLagerung = Bitmap.createScaledBitmap(bitmap, img.getWidth(), img.getHeight(), true); //skalieren um aufs Bild zu pasen
-        img.setImageBitmap(zwischenLagerung);
+        //img.setBackgroundResource(android.R.drawable.dialog_holo_dark_frame);
 
 
     }
