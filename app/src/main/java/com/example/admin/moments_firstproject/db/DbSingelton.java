@@ -9,7 +9,7 @@ public class DbSingelton {
     public static AppDatabase getInstance(Context context){
         if (db == null){
             db = Room.databaseBuilder(context,
-                    AppDatabase.class, "myDB4").allowMainThreadQueries().build();
+                    AppDatabase.class, "myDB5").allowMainThreadQueries().build();
         }
         return db;
     }
