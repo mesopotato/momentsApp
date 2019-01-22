@@ -24,6 +24,12 @@ import java.io.InputStream;
 import java.util.List;
 
 public class DisplayMessageActivity extends AppCompatActivity implements ItemFragment.OnListFragmentInteractionListener {
+    public static final String EXTRA_DETAIL = "com.example.admin.moments_firstproject.DETAIL";
+    public static final String EXTRA_LONG = "com.example.admin.moments_firstproject.LONG";
+    public static final String EXTRA_LAT = "com.example.admin.moments_firstproject.LAT";
+    public static final String EXTRA_IMGPATH = "com.example.admin.moments_firstproject.IMGPATH";
+    public static final String EXTRA_DATE = "com.example.admin.moments_firstproject.DATE";
+    public static final String EXTRA_TITLE = "com.example.admin.moments_firstproject.TITLE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +91,15 @@ public class DisplayMessageActivity extends AppCompatActivity implements ItemFra
 
     @Override
     public void onListFragmentInteraction(Eintrag item) {
+        Intent intent = new Intent(this, DetailsActivity.class);
+        intent.putExtra(EXTRA_TITLE, item.getTitel());
+        intent.putExtra(EXTRA_DETAIL, item.getDetail());
+        intent.putExtra(EXTRA_IMGPATH, item.getImgPath());
+        intent.putExtra(EXTRA_DATE, item.getDate());
+        intent.putExtra(EXTRA_LAT, item.getLat());
+        intent.putExtra(EXTRA_LONG, item.getLng());
+
+        startActivity(intent);
 
     }
     public void newPost(View view) {

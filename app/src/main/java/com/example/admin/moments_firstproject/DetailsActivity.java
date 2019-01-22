@@ -41,23 +41,18 @@ public class DetailsActivity extends AppCompatActivity {
 
         Eintrag eintrag = new Eintrag(title, detail, path, lng, lat, date);
 
-        AppDatabase db = DbSingelton.getInstance(null);
-        db.dao().insertAll(eintrag);
-
-        Eintrag eintragLast = db.dao().getLast();
-
         setContentView(R.layout.activity_details);
         TextView TextTitle = findViewById(R.id.TextTitle);
-        TextTitle.setText(eintragLast.getTitel());
+        TextTitle.setText(eintrag.getTitel());
 
         TextView TextDetails = findViewById(R.id.TextDetails);
-        TextDetails.setText(eintragLast.getDetail());
+        TextDetails.setText(eintrag.getDetail());
 
         TextView location = findViewById(R.id.location);
-        location.setText("Latitude : " + eintragLast.getLat() + "\nLongitude : " + eintragLast.getLng());
+        location.setText("Latitude : " + eintrag.getLat() + "\nLongitude : " + eintrag.getLng());
 
         TextView dateOut = findViewById(R.id.date);
-        dateOut.setText(eintragLast.getDate());
+        dateOut.setText(eintrag.getDate());
 
         ImageButton img = findViewById(R.id.imageButton);
 
@@ -101,4 +96,14 @@ public class DetailsActivity extends AppCompatActivity {
             }
         }
     }
+    public void sendMessage(View view) {
+
+        // Do something in response to button nämlich zur dysplay seite gehen aber nicht bevor startActivity(intent)
+        Intent intent = new Intent(this, DisplayMessageActivity.class);
+
+        //** hier wird der text der eingegeben uwrde abgeholt
+
+        startActivity(intent);
+    }
+
 }

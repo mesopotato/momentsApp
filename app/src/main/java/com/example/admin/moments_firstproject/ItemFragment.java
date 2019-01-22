@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.example.admin.moments_firstproject.db.AppDatabase;
 import com.example.admin.moments_firstproject.db.DbSingelton;
@@ -25,6 +26,7 @@ import java.util.List;
  * interface.
  */
 public class ItemFragment extends Fragment {
+    private static ImageView imgview;
 
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
@@ -88,6 +90,7 @@ public class ItemFragment extends Fragment {
         super.onAttach(context);
         if (context instanceof OnListFragmentInteractionListener) {
             mListener = (OnListFragmentInteractionListener) context;
+
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnListFragmentInteractionListener");

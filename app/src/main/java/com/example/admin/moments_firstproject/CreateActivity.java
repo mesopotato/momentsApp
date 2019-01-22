@@ -26,6 +26,9 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.admin.moments_firstproject.db.AppDatabase;
+import com.example.admin.moments_firstproject.db.DbSingelton;
+import com.example.admin.moments_firstproject.db.Eintrag;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -291,6 +294,11 @@ public class CreateActivity extends AppCompatActivity implements GoogleApiClient
         String currentDateandTime = sdf.format(new Date());
 
         intent.putExtra(EXTRA_DATE, currentDateandTime);
+
+        Eintrag eintrag = new Eintrag(title, detail, mCurrentPhotoPath, lngS, latS, currentDateandTime);
+
+        AppDatabase db = DbSingelton.getInstance(null);
+        db.dao().insertAll(eintrag);
 
         startActivity(intent);
     }
