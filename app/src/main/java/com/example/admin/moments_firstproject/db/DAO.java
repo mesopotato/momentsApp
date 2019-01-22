@@ -9,7 +9,7 @@ import java.util.List;
 
 @Dao
 public interface DAO {
-    @Query("SELECT * FROM eintrag")
+    @Query("SELECT * FROM eintrag ORDER BY date DESC")
     List<Eintrag> getAll();
 
     @Query("SELECT * FROM eintrag WHERE uid= (select max(uid) from eintrag)")

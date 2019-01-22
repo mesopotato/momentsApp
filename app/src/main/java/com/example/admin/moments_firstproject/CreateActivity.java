@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Matrix;
 import android.location.Location;
 import android.net.Uri;
 import android.os.Build;
@@ -80,7 +79,7 @@ public class CreateActivity extends AppCompatActivity implements GoogleApiClient
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create);
-        mImageButton = findViewById(R.id.imageButton);
+        mImageButton = findViewById(R.id.imageView);
         locationTv = findViewById(R.id.location);
         // we add permissions we need to request location of the users
         permissions.add(Manifest.permission.ACCESS_FINE_LOCATION);
