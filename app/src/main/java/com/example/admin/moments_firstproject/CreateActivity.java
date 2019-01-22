@@ -313,7 +313,7 @@ public class CreateActivity extends AppCompatActivity implements GoogleApiClient
                 //leeres image file erstellen
                 photoFile = createImageFile();
             } catch (IOException ex) {
-                Log.e("createImageFile", "ceate image failed");
+                Log.e("createImageFile", "create image failed");
             }
             // Continue only if the File was successfully created
             if (photoFile != null) {
