@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity implements ItemFragment.OnLi
         AppDatabase db = DbSingelton.getInstance(getApplicationContext());
 
         List<Eintrag> eintraege = db.dao().getAll();
-        setContentView(R.layout.activity_display_message);
+        setContentView(R.layout.activity_main);
         if (eintraege.size() > 0){
             int i = eintraege.size() -1 ;
 

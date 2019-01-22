@@ -11,33 +11,33 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_launcherm"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_launcherm_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".DetailsActivity"/>
-        <activity android:name=".CreateActivity"
-        android:windowSoftInputMode="adjustPan"/>
-
-        <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
         <activity
-            android:name=".DisplayMessageActivity"
+            android:name=".DetailsActivity"
             android:parentActivityName=".MainActivity">
-
-            <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity"
-                />
+            />
         </activity>
+
+        <activity
+            android:name=".CreateActivity"
+            android:windowSoftInputMode="adjustPan"/>
+
+        <activity
+            android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="com.example.admin.moments_firstproject.fileprovider"
@@ -45,7 +45,7 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths"></meta-data>
+                android:resource="@xml/file_paths"/>
         </provider>
     </application>
 

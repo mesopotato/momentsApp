@@ -1,5 +1,6 @@
 package com.example.admin.moments_firstproject;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -10,7 +11,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toolbar;
 
 import com.example.admin.moments_firstproject.db.AppDatabase;
 import com.example.admin.moments_firstproject.db.DbSingelton;
@@ -54,18 +57,26 @@ public class DetailsActivity extends AppCompatActivity {
         TextView dateOut = findViewById(R.id.date);
         dateOut.setText(eintrag.getDate());
 
-        ImageButton img = findViewById(R.id.imageButton);
+        ImageView img = findViewById(R.id.imageView);
 
-        Matrix matrix = new Matrix();
-        matrix.postRotate(90);
-
+        Bitmap scaledBitmap = scaleDown(readImageFile(), 1200, true);
         //Bitmap zwischenLagerung = Bitmap.createScaledBitmap(readImageFile(), img.getWidth(), img.getHeight(), true);
-        //Bitmap rotatedBitmap = Bitmap.createBitmap(zwischenLagerung, 0, 0, zwischenLagerung.getWidth(), zwischenLagerung.getHeight(), matrix, true);
-        img.setImageBitmap(readImageFile());
+        img.setImageBitmap(scaledBitmap);
 
         //img.setBackgroundResource(android.R.drawable.dialog_holo_dark_frame);
 
+    }
+    public static Bitmap scaleDown(Bitmap realImage, float maxImageSize,
+                                   boolean filter) {
+        float ratio = Math.min(
+                (float) maxImageSize / realImage.getWidth(),
+                (float) maxImageSize / realImage.getHeight());
+        int width = Math.round((float) ratio * realImage.getWidth());
+        int height = Math.round((float) ratio * realImage.getHeight());
 
+        Bitmap newBitmap = Bitmap.createScaledBitmap(realImage, width,
+                height, filter);
+        return newBitmap;
     }
 
     public void newPost(View view) {
