@@ -34,16 +34,9 @@ public class DisplayMessageActivity extends AppCompatActivity implements ItemFra
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Intent intent = getIntent();
-
-        String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
 
         AppDatabase db = DbSingelton.getInstance(null);
 
-        //new Thread(() -> {
-        //input einspeichern
-       // db.dao().insertAll(eintrag);
-        //abfrage
         List<Eintrag> eintraege = db.dao().getAll();
         setContentView(R.layout.activity_display_message);
         if (eintraege.size() > 0){
@@ -56,37 +49,6 @@ public class DisplayMessageActivity extends AppCompatActivity implements ItemFra
         else {
             TextView textView = findViewById(R.id.textView2);
             textView.setText("Noch keine Moments vorhanden");}
-
-
-         //.allowMainThreadQueries()
-/*
-        AppDatabase db = Room.databaseBuilder(getApplicationContext(),
-                AppDatabase.class, "myDB3").allowMainThreadQueries().build();
-
-        db.dao().insertAll(eintrag);
-
-        List<Eintrag> eintraege = db.dao().getAll();
-        TextView textView = findViewById(R.id.textView2);
-        int i = eintraege.size() -1;
-        textView.setText(eintraege.get(i).getFirstName());
-*/
-
-
-    //    }).start();
-
-
-     //  new Thread(() ->{
-
-               /*
-           Eintrag eintrag2 = db.dao().getLast();
-           TextView textView = findViewById(R.id.textView2);
-           textView.setText(eintrag2.getFirstName());
-           */
-    //    }).start();
-
-
-        // Capture the layout's TextView and set the string as its text
-
     }
 
     @Override

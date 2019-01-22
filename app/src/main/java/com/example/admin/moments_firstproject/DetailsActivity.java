@@ -99,7 +99,7 @@ public class DetailsActivity extends AppCompatActivity {
     public void sendMessage(View view) {
 
         // Do something in response to button nämlich zur dysplay seite gehen aber nicht bevor startActivity(intent)
-        Intent intent = new Intent(this, DisplayMessageActivity.class);
+        Intent intent = new Intent(this, MainActivity.class);
 
         //** hier wird der text der eingegeben uwrde abgeholt
 
